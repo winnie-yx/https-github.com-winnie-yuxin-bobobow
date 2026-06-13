@@ -1,3 +1,4 @@
+// Keep the scene scaled proportionally to the original mockup size.
 const DESIGN_WIDTH = 1920;
 const DESIGN_HEIGHT = 1080;
 
