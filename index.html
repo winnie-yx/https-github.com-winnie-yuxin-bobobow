@@ -1,0 +1,1446 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BoBo Bow Login</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Mochiy+Pop+P+One&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@500;600;700&family=Inter:wght@500;600&family=Plus+Jakarta+Sans:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="viewport">
+      <div class="scene-frame">
+        <section class="scene scene--login is-active" data-screen="login" aria-label="Login screen">
+          <img
+            class="scene__background"
+            src="./assets/background.png"
+            alt=""
+            aria-hidden="true"
+          />
+
+          <button
+            class="scene__logo-button"
+            type="button"
+            aria-label="BoBo Bow"
+          >
+            <img
+              class="scene__logo"
+              src="./assets/logo.png"
+              alt="BoBo Bow"
+            />
+          </button>
+
+          <section class="login-card" data-mode="password" aria-labelledby="tab-password">
+            <header class="login-tabs" role="tablist" aria-label="Login methods">
+              <div class="login-tabs__track" aria-hidden="true"></div>
+              <div class="login-tabs__active" aria-hidden="true">
+                <img
+                  class="login-tabs__active-image login-tabs__active-image--face"
+                  src="./assets/face-login-tab.svg"
+                  alt=""
+                />
+                <img
+                  class="login-tabs__active-image login-tabs__active-image--password"
+                  src="./assets/password-tab-active.svg"
+                  alt=""
+                />
+              </div>
+              <button
+                class="login-tabs__button login-tabs__button--face"
+                id="tab-face"
+                type="button"
+                role="tab"
+                aria-controls="panel-face"
+                aria-selected="false"
+                data-mode-target="face"
+              >
+                Face Login
+              </button>
+              <button
+                class="login-tabs__button login-tabs__button--password is-active"
+                id="tab-password"
+                type="button"
+                role="tab"
+                aria-controls="panel-password"
+                aria-selected="true"
+                data-mode-target="password"
+              >
+                Password
+              </button>
+            </header>
+
+            <div class="login-card__content">
+              <div class="login-card__body">
+                <section
+                  class="login-panel login-panel--face is-active"
+                  id="panel-face"
+                  role="tabpanel"
+                  aria-labelledby="tab-face"
+                >
+                  <div class="login-card__illustration-wrap">
+                    <img
+                      class="login-card__illustration"
+                      src="./assets/face-illustration.png"
+                      alt="Face login illustration"
+                    />
+                  </div>
+
+                  <p class="login-card__hint">Look at the camera and smile!</p>
+
+                  <button class="action-button action-button--primary" type="button" data-nav-target="quest">
+                    <img class="action-button__icon" src="./assets/start-icon.svg" alt="" aria-hidden="true" />
+                    <span>Start Log In</span>
+                  </button>
+                </section>
+
+                <section
+                  class="login-panel login-panel--password"
+                  id="panel-password"
+                  role="tabpanel"
+                  aria-labelledby="tab-password"
+                  aria-hidden="true"
+                >
+                  <div class="password-panel">
+                    <div class="password-panel__fields">
+                      <label class="field field--compact" for="account-input">
+                        <img
+                          class="field__icon field__icon--account"
+                          src="./assets/account-icon.svg"
+                          alt=""
+                          aria-hidden="true"
+                        />
+                        <span class="sr-only">Username or email</span>
+                        <input
+                          class="field__input field__input--compact"
+                          id="account-input"
+                          name="account"
+                          type="text"
+                          placeholder="Username / Email"
+                          autocomplete="username"
+                        />
+                      </label>
+
+                      <label class="field field--compact" for="password-input">
+                        <img
+                          class="field__icon field__icon--password"
+                          src="./assets/password-icon.svg"
+                          alt=""
+                          aria-hidden="true"
+                        />
+                        <span class="sr-only">Password</span>
+                        <input
+                          class="field__input field__input--compact"
+                          id="password-input"
+                          name="password"
+                          type="password"
+                          placeholder="Password"
+                          autocomplete="current-password"
+                        />
+                        <button
+                          class="field__toggle"
+                          type="button"
+                          aria-label="Show password"
+                          aria-pressed="false"
+                          data-password-toggle
+                          data-password-target="password-input"
+                        >
+                          <span class="field__toggle-eye" aria-hidden="true"></span>
+                        </button>
+                      </label>
+                    </div>
+
+                    <button class="password-panel__link" type="button">
+                      Forgot Password?
+                    </button>
+
+                    <button class="action-button action-button--primary" type="button" data-nav-target="quest">
+                      <span>Log in</span>
+                    </button>
+                  </div>
+                </section>
+              </div>
+
+              <div class="login-card__divider" aria-hidden="true"></div>
+
+              <div class="login-card__footer">
+                <p class="login-card__footer-copy">New here?</p>
+                <button class="action-button action-button--secondary" type="button" data-nav-target="register">
+                  <span>Create Account</span>
+                </button>
+              </div>
+            </div>
+          </section>
+        </section>
+
+        <section class="scene scene--register" data-screen="register" aria-label="Create account screen">
+          <img
+            class="register-scene__background"
+            src="./assets/register-background.png"
+            alt=""
+            aria-hidden="true"
+          />
+
+          <img
+            class="register-scene__greeting"
+            src="./assets/register-greeting.png"
+            alt=""
+            aria-hidden="true"
+          />
+
+          <section class="register-card" data-mode="face" aria-labelledby="register-tab-face">
+            <div class="register-card__inner">
+              <div class="register-card__header">
+                <h1 class="register-card__title">Create Account</h1>
+                <p class="register-card__subtitle">
+                  Join Bobo Bow and start your yoga adventure!
+                </p>
+              </div>
+
+              <div class="register-card__tabs" role="tablist" aria-label="Register methods">
+                <div class="register-card__tabs-track"></div>
+                <div class="register-card__tabs-active">
+                  <img
+                    class="register-card__tabs-active-image register-card__tabs-active-image--face"
+                    src="./assets/register-top-select-face.svg"
+                    alt=""
+                  />
+                  <img
+                    class="register-card__tabs-active-image register-card__tabs-active-image--password"
+                    src="./assets/register-top-select-password.svg"
+                    alt=""
+                  />
+                </div>
+                <button
+                  class="register-card__tab register-card__tab--face is-active"
+                  id="register-tab-face"
+                  type="button"
+                  role="tab"
+                  aria-controls="register-panel-face"
+                  aria-selected="true"
+                  data-register-mode-target="face"
+                >
+                  Face Login
+                </button>
+                <button
+                  class="register-card__tab register-card__tab--password"
+                  id="register-tab-password"
+                  type="button"
+                  role="tab"
+                  aria-controls="register-panel-password"
+                  aria-selected="false"
+                  data-register-mode-target="password"
+                >
+                  Password
+                </button>
+              </div>
+
+              <div class="register-card__body">
+                <section
+                  class="register-panel register-panel--face is-active"
+                  id="register-panel-face"
+                  role="tabpanel"
+                  aria-labelledby="register-tab-face"
+                >
+                  <div class="register-card__setup">
+                    <p class="register-card__setup-title">Face ID set up</p>
+                    <img
+                      class="register-card__setup-image"
+                      src="./assets/register-face-setup.png"
+                      alt="Face ID setup illustration"
+                    />
+                    <p class="register-card__setup-copy">Look at the camera and smile!</p>
+                  </div>
+
+                  <div class="register-card__actions register-card__actions--single">
+                    <button
+                      class="action-button action-button--secondary action-button--register-back"
+                      type="button"
+                      data-nav-target="login"
+                    >
+                      <span>Back to login</span>
+                    </button>
+                  </div>
+                </section>
+
+                <section
+                  class="register-panel register-panel--password"
+                  id="register-panel-password"
+                  role="tabpanel"
+                  aria-labelledby="register-tab-password"
+                  aria-hidden="true"
+                >
+                  <div class="register-password-panel">
+                    <div class="register-password-panel__fields">
+                      <label class="field field--register" for="register-account-input">
+                        <img
+                          class="field__icon field__icon--register-account"
+                          src="./assets/register-account-icon.svg"
+                          alt=""
+                          aria-hidden="true"
+                        />
+                        <span class="sr-only">Username or email</span>
+                        <input
+                          class="field__input field__input--register"
+                          id="register-account-input"
+                          name="register-account"
+                          type="text"
+                          placeholder="Username / Email"
+                          autocomplete="username"
+                        />
+                      </label>
+
+                      <div class="register-password-panel__password-stack">
+                        <label class="field field--register" for="register-password-input">
+                          <img
+                            class="field__icon field__icon--register-password"
+                            src="./assets/register-password-icon.svg"
+                            alt=""
+                            aria-hidden="true"
+                          />
+                          <span class="sr-only">Set your password</span>
+                          <input
+                            class="field__input field__input--register"
+                            id="register-password-input"
+                            name="register-password"
+                            type="password"
+                            placeholder="Set Your Password"
+                            autocomplete="new-password"
+                          />
+                        </label>
+
+                        <label class="field field--register" for="register-confirm-password-input">
+                          <img
+                            class="field__icon field__icon--register-password"
+                            src="./assets/register-password-icon.svg"
+                            alt=""
+                            aria-hidden="true"
+                          />
+                          <span class="sr-only">Confirm your password</span>
+                          <input
+                            class="field__input field__input--register"
+                            id="register-confirm-password-input"
+                            name="register-confirm-password"
+                            type="password"
+                            placeholder="Confirm Your Password"
+                            autocomplete="new-password"
+                          />
+                        </label>
+                      </div>
+                    </div>
+
+                    <div class="register-card__actions register-card__actions--dual">
+                      <button
+                        class="action-button action-button--secondary action-button--register-back"
+                        type="button"
+                        data-nav-target="login"
+                      >
+                        <span>Back to login</span>
+                      </button>
+                      <button
+                        class="action-button action-button--primary action-button--register-submit"
+                        type="button"
+                        data-nav-target="profile"
+                      >
+                        <span>Create account</span>
+                      </button>
+                    </div>
+                  </div>
+                </section>
+              </div>
+
+              <div class="register-card__pagination-wrap">
+                <img
+                  class="register-card__pagination register-card__pagination--face"
+                  src="./assets/register-pagination.png"
+                  alt=""
+                  aria-hidden="true"
+                />
+                <img
+                  class="register-card__pagination register-card__pagination--password"
+                  src="./assets/register-password-pagination.svg"
+                  alt=""
+                  aria-hidden="true"
+                />
+              </div>
+            </div>
+          </section>
+        </section>
+
+        <section class="scene scene--profile" data-screen="profile" aria-label="Create profile screen">
+          <img
+            class="profile-scene__background"
+            src="./assets/profile-background.png"
+            alt=""
+            aria-hidden="true"
+          />
+
+          <img
+            class="profile-scene__greeting"
+            src="./assets/profile-greeting.png"
+            alt=""
+            aria-hidden="true"
+          />
+
+          <section class="profile-card">
+            <div class="profile-card__inner">
+              <div class="profile-card__header">
+                <h1 class="profile-card__title">Create Profile</h1>
+                <p class="profile-card__subtitle">
+                  Join Bobo Bow and start your yoga adventure!
+                </p>
+              </div>
+
+              <div class="profile-card__body">
+                <div class="profile-card__gender" role="radiogroup" aria-label="Gender">
+                  <button
+                    class="profile-gender-card profile-gender-card--girl"
+                    type="button"
+                    role="radio"
+                    aria-checked="false"
+                    data-gender-option="girl"
+                  >
+                    <span class="sr-only">Girl</span>
+                    <img src="./assets/profile-girl.png" alt="" aria-hidden="true" />
+                    <span class="profile-gender-card__badge" aria-hidden="true">
+                      <span class="profile-gender-card__check"></span>
+                    </span>
+                  </button>
+                  <button
+                    class="profile-gender-card profile-gender-card--boy"
+                    type="button"
+                    role="radio"
+                    aria-checked="false"
+                    data-gender-option="boy"
+                  >
+                    <span class="sr-only">Boy</span>
+                    <img src="./assets/profile-boy.png" alt="" aria-hidden="true" />
+                    <span class="profile-gender-card__badge" aria-hidden="true">
+                      <span class="profile-gender-card__check"></span>
+                    </span>
+                  </button>
+                </div>
+
+                <div class="profile-age">
+                  <p class="profile-age__label">Your Age</p>
+                  <div class="profile-age__display" aria-live="polite" data-age-drag-surface>
+                    <span class="profile-age__value profile-age__value--muted" data-age-offset="-2">6</span>
+                    <span class="profile-age__value profile-age__value--muted" data-age-offset="-1">7</span>
+                    <div class="profile-age__active-group">
+                      <button class="profile-age__arrow" type="button" aria-label="Decrease age" data-age-step="-1">
+                        <img src="./assets/profile-age-left.svg" alt="" aria-hidden="true" />
+                      </button>
+                      <span class="profile-age__value profile-age__value--active" data-age-current>8</span>
+                      <button class="profile-age__arrow" type="button" aria-label="Increase age" data-age-step="1">
+                        <img src="./assets/profile-age-right.svg" alt="" aria-hidden="true" />
+                      </button>
+                    </div>
+                    <span class="profile-age__value profile-age__value--muted" data-age-offset="1">9</span>
+                    <span class="profile-age__value profile-age__value--muted" data-age-offset="2">10</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="profile-card__actions">
+                <button
+                  class="action-button action-button--secondary action-button--profile-back"
+                  type="button"
+                  data-nav-target="register-password"
+                >
+                  <span>Last Step</span>
+                </button>
+                <button
+                  class="action-button action-button--primary action-button--profile-next"
+                  type="button"
+                  data-nav-target="pet"
+                >
+                  <span>Next</span>
+                </button>
+              </div>
+
+              <img
+                class="profile-card__pagination"
+                src="./assets/profile-pagination.svg"
+                alt=""
+                aria-hidden="true"
+              />
+            </div>
+          </section>
+        </section>
+
+        <section class="scene scene--pet" data-screen="pet" aria-label="My pet screen">
+          <img
+            class="profile-scene__background"
+            src="./assets/my-pet-background.png"
+            alt=""
+            aria-hidden="true"
+          />
+
+          <img
+            class="profile-scene__greeting"
+            src="./assets/my-pet-greeting.png"
+            alt=""
+            aria-hidden="true"
+          />
+
+          <section class="pet-card" data-pet-index="0">
+            <div class="pet-card__inner">
+              <div class="pet-card__header">
+                <h1 class="pet-card__title">My Pet</h1>
+                <p class="pet-card__subtitle">
+                  Join Bobo Bow and start your yoga adventure!
+                </p>
+              </div>
+
+              <div class="pet-carousel" data-pet-drag-surface>
+                <button class="pet-carousel__pill" type="button">
+                  <span>Sculpt It</span>
+                </button>
+
+                <img
+                  class="pet-carousel__swipe"
+                  src="./assets/my-pet-swipe.png"
+                  alt=""
+                  aria-hidden="true"
+                />
+
+                <div class="pet-carousel__stage">
+                  <button
+                    class="pet-option pet-option--bobo is-active"
+                    type="button"
+                    data-pet-option="0"
+                    aria-pressed="true"
+                  >
+                    <img class="pet-option__stump" src="./assets/my-pet-stump.png" alt="" aria-hidden="true" />
+                    <img class="pet-option__art pet-option__art--bobo" src="./assets/my-pet-bobo.png" alt="Bobo pet" />
+                    <canvas
+                      class="pet-option__canvas pet-option__canvas--bobo"
+                      data-sculpt-canvas
+                      data-sculpt-src="./assets/my-pet-bobo.png"
+                      aria-label="Drag to sculpt Bobo"
+                    ></canvas>
+                  </button>
+
+                  <button
+                    class="pet-option pet-option--bunny"
+                    type="button"
+                    data-pet-option="1"
+                    aria-pressed="false"
+                  >
+                    <img class="pet-option__stump" src="./assets/my-pet-stump.png" alt="" aria-hidden="true" />
+                    <img class="pet-option__art pet-option__art--bunny" src="./assets/my-pet-bunny.png" alt="Bunny pet" />
+                  </button>
+                </div>
+
+                <div class="pet-carousel__slider" aria-hidden="true">
+                  <span class="pet-carousel__slider-thumb"></span>
+                </div>
+              </div>
+
+              <div class="pet-card__actions">
+                <button
+                  class="action-button action-button--secondary action-button--pet-back"
+                  type="button"
+                  data-nav-target="profile"
+                >
+                  <span>Last Step</span>
+                </button>
+                <button
+                  class="action-button action-button--primary action-button--pet-complete"
+                  type="button"
+                  data-nav-target="login"
+                >
+                  <span>Complete</span>
+                </button>
+              </div>
+
+              <div class="pet-card__pagination" aria-hidden="true">
+                <span class="pet-card__dot"></span>
+                <span class="pet-card__dot"></span>
+                <span class="pet-card__dot pet-card__dot--active"></span>
+              </div>
+            </div>
+          </section>
+        </section>
+
+        <section class="scene scene--quest" data-screen="quest" aria-label="Today's quest screen">
+          <img
+            class="quest-scene__background"
+            src="./assets/quest-background.png"
+            alt=""
+            aria-hidden="true"
+          />
+
+          <div
+            class="quest-side-tab__edge-sensor"
+            aria-hidden="true"
+            data-side-tab-edge
+            data-side-tab-screen="quest"
+          ></div>
+
+          <nav
+            class="quest-side-tab"
+            aria-label="Home sections"
+            data-side-tab
+            data-side-tab-screen="quest"
+          >
+            <div class="quest-side-tab__rail">
+              <div class="quest-side-tab__items">
+                <button
+                  class="quest-side-tab__item quest-side-tab__item--active"
+                  type="button"
+                  aria-label="Home"
+                  aria-current="page"
+                  data-nav-target="quest"
+                >
+                  <img
+                    class="quest-side-tab__icon quest-side-tab__icon--shirt"
+                    src="./assets/home-tab-icon-shirt.png"
+                    alt=""
+                    aria-hidden="true"
+                  />
+                </button>
+                <button class="quest-side-tab__item" type="button" aria-label="Buddy">
+                  <img
+                    class="quest-side-tab__icon quest-side-tab__icon--bobo"
+                    src="./assets/home-tab-icon-bobo.png"
+                    alt=""
+                    aria-hidden="true"
+                  />
+                </button>
+                <button
+                  class="quest-side-tab__item"
+                  type="button"
+                  aria-label="Community"
+                  data-nav-target="circle"
+                >
+                  <img
+                    class="quest-side-tab__icon quest-side-tab__icon--community"
+                    src="./assets/home-tab-icon-community.png"
+                    alt=""
+                    aria-hidden="true"
+                  />
+                </button>
+                <button
+                  class="quest-side-tab__item"
+                  type="button"
+                  aria-label="Paw rewards"
+                  data-nav-target="report"
+                >
+                  <img
+                    class="quest-side-tab__icon quest-side-tab__icon--paw"
+                    src="./assets/home-tab-icon-paw.png"
+                    alt=""
+                    aria-hidden="true"
+                  />
+                </button>
+              </div>
+              <span class="quest-side-tab__indicator quest-side-tab__indicator--middle" aria-hidden="true"></span>
+            </div>
+          </nav>
+
+          <img
+            class="quest-scene__character"
+            src="./assets/quest-character.png"
+            alt="Bobo character"
+            role="button"
+            tabindex="0"
+            aria-label="Show Bobo message"
+            data-quest-character
+          />
+
+          <section class="quest-scene__status" aria-label="Pet level status">
+            <h2 class="quest-scene__status-title">Lv.5</h2>
+            <div class="quest-scene__status-bar" aria-hidden="true">
+              <div class="quest-scene__status-fill"></div>
+              <span class="quest-scene__status-value">85/100</span>
+              <img
+                class="quest-scene__status-hand"
+                src="./assets/quest-hand-icon.png"
+                alt=""
+                aria-hidden="true"
+              />
+            </div>
+          </section>
+
+          <div class="quest-scene__bubble" aria-hidden="true" data-quest-bubble>
+            <img
+              class="quest-scene__bubble-image"
+              src="./assets/quest-bubble.png"
+              alt="Don't forget today's task!"
+            />
+          </div>
+
+          <div class="quest-scene__streak" aria-label="7 days streak">
+            <img
+              class="quest-scene__streak-icon"
+              src="./assets/quest-streak-icon.png"
+              alt=""
+              aria-hidden="true"
+            />
+            <span class="quest-scene__streak-copy">7 Days Streak!</span>
+          </div>
+
+          <section class="quest-card" data-intensity="standard" data-quest-tilt>
+            <div class="quest-card__inner">
+              <div class="quest-card__header">
+                <h1 class="quest-card__title">Today's Quest</h1>
+                <p class="quest-card__subtitle">Let's get moving, friend!</p>
+              </div>
+
+              <div class="quest-card__metrics">
+                <article class="quest-metric-card">
+                  <img
+                    class="quest-metric-card__icon quest-metric-card__icon--duration"
+                    src="./assets/quest-duration-icon.png"
+                    alt=""
+                    aria-hidden="true"
+                  />
+                  <div class="quest-metric-card__copy">
+                    <span class="quest-metric-card__label">Duration</span>
+                    <strong class="quest-metric-card__value">16 min</strong>
+                  </div>
+                </article>
+
+                <article class="quest-metric-card">
+                  <img
+                    class="quest-metric-card__icon quest-metric-card__icon--poses"
+                    src="./assets/quest-poses-icon.png"
+                    alt=""
+                    aria-hidden="true"
+                  />
+                  <div class="quest-metric-card__copy quest-metric-card__copy--poses">
+                    <span class="quest-metric-card__label">Poses Quest</span>
+                    <strong class="quest-metric-card__value">6</strong>
+                  </div>
+                </article>
+              </div>
+
+              <div class="quest-card__intensity">
+                <p class="quest-card__intensity-label">Recommended Intensity:</p>
+                <div class="quest-card__intensity-options" role="radiogroup" aria-label="Quest intensity">
+                  <button
+                    class="quest-intensity__button"
+                    type="button"
+                    role="radio"
+                    aria-checked="false"
+                    data-quest-intensity="easy"
+                  >
+                    <span>Easy</span>
+                  </button>
+                  <button
+                    class="quest-intensity__button"
+                    type="button"
+                    role="radio"
+                    aria-checked="true"
+                    data-quest-intensity="standard"
+                  >
+                    <span>Standard</span>
+                  </button>
+                  <button
+                    class="quest-intensity__button"
+                    type="button"
+                    role="radio"
+                    aria-checked="false"
+                    data-quest-intensity="challenge"
+                  >
+                    <span>Challenge</span>
+                  </button>
+                </div>
+              </div>
+
+              <button
+                class="quest-card__start-button"
+                type="button"
+                aria-label="Start quest"
+                data-nav-target="training"
+              >
+                <img src="./assets/quest-start-banner.png" alt="" aria-hidden="true" />
+                <span class="sr-only">Start</span>
+              </button>
+            </div>
+          </section>
+        </section>
+
+        <section class="scene scene--circle" data-screen="circle" aria-label="Circle social screen">
+          <img
+            class="circle-scene__background"
+            src="./assets/circle-background.png"
+            alt=""
+            aria-hidden="true"
+          />
+
+          <div
+            class="quest-side-tab__edge-sensor"
+            aria-hidden="true"
+            data-side-tab-edge
+            data-side-tab-screen="circle"
+          ></div>
+
+          <nav
+            class="quest-side-tab"
+            aria-label="Circle sections"
+            data-side-tab
+            data-side-tab-screen="circle"
+          >
+            <div class="quest-side-tab__rail">
+              <div class="quest-side-tab__items">
+                <button
+                  class="quest-side-tab__item"
+                  type="button"
+                  aria-label="Home"
+                  data-nav-target="quest"
+                >
+                  <img
+                    class="quest-side-tab__icon quest-side-tab__icon--shirt"
+                    src="./assets/home-tab-icon-shirt.png"
+                    alt=""
+                    aria-hidden="true"
+                  />
+                </button>
+                <button class="quest-side-tab__item" type="button" aria-label="Buddy">
+                  <img
+                    class="quest-side-tab__icon quest-side-tab__icon--bobo"
+                    src="./assets/home-tab-icon-bobo.png"
+                    alt=""
+                    aria-hidden="true"
+                  />
+                </button>
+                <button
+                  class="quest-side-tab__item quest-side-tab__item--active"
+                  type="button"
+                  aria-label="Community"
+                  aria-current="page"
+                  data-nav-target="circle"
+                >
+                  <img
+                    class="quest-side-tab__icon quest-side-tab__icon--community"
+                    src="./assets/home-tab-icon-community.png"
+                    alt=""
+                    aria-hidden="true"
+                  />
+                </button>
+                <button
+                  class="quest-side-tab__item"
+                  type="button"
+                  aria-label="Paw rewards"
+                  data-nav-target="report"
+                >
+                  <img
+                    class="quest-side-tab__icon quest-side-tab__icon--paw"
+                    src="./assets/home-tab-icon-paw.png"
+                    alt=""
+                    aria-hidden="true"
+                  />
+                </button>
+              </div>
+              <span class="quest-side-tab__indicator" aria-hidden="true"></span>
+            </div>
+          </nav>
+
+          <img
+            class="circle-scene__title"
+            src="./assets/circle-title-figma-139-507.png"
+            alt="BoBo Bow"
+          />
+
+          <section class="circle-scene__shell" aria-label="Circle community feed">
+            <div class="circle-scene__topbar">
+              <label class="circle-scene__search">
+                <span class="circle-scene__search-icon" aria-hidden="true">⌕</span>
+                <input type="text" value="" placeholder="Search friend ID" aria-label="Search friend ID" />
+              </label>
+              <button class="circle-scene__icon-button circle-scene__icon-button--add" type="button" aria-label="Add friend">
+                <img
+                  class="circle-scene__icon-button-image circle-scene__icon-button-image--add"
+                  src="./assets/circle-add-friend-button-139-261.png"
+                  alt=""
+                  aria-hidden="true"
+                />
+              </button>
+              <button class="circle-scene__icon-button" type="button" aria-label="Notifications">
+                <span aria-hidden="true">⎋</span>
+              </button>
+            </div>
+
+            <div class="circle-scene__content">
+              <img
+                class="circle-scene__leaderboard"
+                src="./assets/circle-leaderboard.png"
+                alt="Leader board"
+              />
+
+              <section class="circle-feed" aria-label="Community posts">
+                <div class="circle-feed__viewport" data-circle-feed>
+                  <div class="circle-feed__grid">
+                    <article class="circle-post-card">
+                      <div
+                        class="circle-post-card__trigger"
+                        role="button"
+                        tabindex="0"
+                        data-circle-post-trigger
+                        data-post-title="Leo"
+                        data-post-caption="Just finished a great stretch!"
+                        data-post-badge="Great Job!"
+                        data-post-comments="Comment (5)"
+                        data-post-image="./assets/circle-post-user-1.png"
+                      >
+                        <div class="circle-post-card__header">
+                          <div class="circle-post-card__author">
+                            <img class="circle-post-card__avatar" src="./assets/circle-avatar-leo.png" alt="" aria-hidden="true" />
+                            <div class="circle-post-card__author-copy">
+                              <strong>Leo</strong>
+                              <span>Just finished a great stretch!</span>
+                            </div>
+                          </div>
+                          <span class="circle-post-card__menu" aria-hidden="true">···</span>
+                        </div>
+                        <div class="circle-post-card__media-wrap">
+                          <img class="circle-post-card__media" src="./assets/circle-post-user-1.png" alt="Leo post" />
+                        </div>
+                      </div>
+                      <div class="circle-post-card__actions">
+                        <button
+                          class="circle-post-card__action circle-post-card__action--primary"
+                          type="button"
+                          data-circle-cheer
+                          data-circle-cheer-symbol="👍"
+                        >
+                          👍 Great Job!
+                        </button>
+                        <button class="circle-post-card__action circle-post-card__action--secondary" type="button">
+                          💬 Comment (5)
+                        </button>
+                      </div>
+                      <div class="circle-post-card__cheer-overlay" aria-hidden="true" data-circle-cheer-overlay>
+                        <span class="circle-post-card__cheer-symbol">👍</span>
+                        <span class="circle-post-card__cheer-burst circle-post-card__cheer-burst--a">👍</span>
+                        <span class="circle-post-card__cheer-burst circle-post-card__cheer-burst--b">👍</span>
+                        <span class="circle-post-card__cheer-burst circle-post-card__cheer-burst--c">👍</span>
+                        <span class="circle-post-card__cheer-burst circle-post-card__cheer-burst--d">👍</span>
+                      </div>
+                    </article>
+
+                    <article class="circle-post-card">
+                      <div
+                        class="circle-post-card__trigger"
+                        role="button"
+                        tabindex="0"
+                        data-circle-post-trigger
+                        data-post-title="Jimmy cook"
+                        data-post-caption="I love yoga day"
+                        data-post-badge="Amazing!"
+                        data-post-comments="Comment (3)"
+                        data-post-tag="Gymnastics"
+                        data-post-image="./assets/circle-post-user-2.png"
+                      >
+                        <div class="circle-post-card__header">
+                          <div class="circle-post-card__author">
+                            <img class="circle-post-card__avatar" src="./assets/circle-avatar-jimmy.png" alt="" aria-hidden="true" />
+                            <div class="circle-post-card__author-copy">
+                              <strong>Jimmy cook</strong>
+                              <span>I love yoga day</span>
+                            </div>
+                          </div>
+                          <span class="circle-post-card__menu" aria-hidden="true">···</span>
+                        </div>
+                        <div class="circle-post-card__media-wrap">
+                          <span class="circle-post-card__tag">Gymnastics</span>
+                          <img class="circle-post-card__media" src="./assets/circle-post-user-2.png" alt="Jimmy gymnastics post" />
+                        </div>
+                      </div>
+                      <div class="circle-post-card__actions">
+                        <button
+                          class="circle-post-card__action circle-post-card__action--primary"
+                          type="button"
+                          data-circle-cheer
+                          data-circle-cheer-symbol="👍"
+                        >
+                          🌟 Amazing!
+                        </button>
+                        <button class="circle-post-card__action circle-post-card__action--secondary" type="button">
+                          💬 Comment (3)
+                        </button>
+                      </div>
+                      <div class="circle-post-card__cheer-overlay" aria-hidden="true" data-circle-cheer-overlay>
+                        <span class="circle-post-card__cheer-symbol">👍</span>
+                        <span class="circle-post-card__cheer-burst circle-post-card__cheer-burst--a">👍</span>
+                        <span class="circle-post-card__cheer-burst circle-post-card__cheer-burst--b">👍</span>
+                        <span class="circle-post-card__cheer-burst circle-post-card__cheer-burst--c">👍</span>
+                        <span class="circle-post-card__cheer-burst circle-post-card__cheer-burst--d">👍</span>
+                      </div>
+                    </article>
+
+                    <article class="circle-post-card">
+                      <div
+                        class="circle-post-card__trigger"
+                        role="button"
+                        tabindex="0"
+                        data-circle-post-trigger
+                        data-post-title="Alexander Lee"
+                        data-post-caption="Sharing today's stretch and breath rhythm."
+                        data-post-badge="Great Job!"
+                        data-post-comments="Comment (4)"
+                        data-post-image="./assets/circle-post-user-1.png"
+                      >
+                        <div class="circle-post-card__header">
+                          <div class="circle-post-card__author">
+                            <img class="circle-post-card__avatar" src="./assets/circle-avatar-alexander.png" alt="" aria-hidden="true" />
+                            <div class="circle-post-card__author-copy">
+                              <strong>Alexander Lee</strong>
+                              <span>Sharing today's stretch and breath rhythm.</span>
+                            </div>
+                          </div>
+                          <span class="circle-post-card__menu" aria-hidden="true">···</span>
+                        </div>
+                        <div class="circle-post-card__media-wrap">
+                          <img class="circle-post-card__media" src="./assets/circle-post-user-1.png" alt="Alexander stretch post" />
+                        </div>
+                      </div>
+                      <div class="circle-post-card__actions">
+                        <button
+                          class="circle-post-card__action circle-post-card__action--primary"
+                          type="button"
+                          data-circle-cheer
+                          data-circle-cheer-symbol="👍"
+                        >
+                          👍 Great Job!
+                        </button>
+                        <button class="circle-post-card__action circle-post-card__action--secondary" type="button">
+                          💬 Comment (4)
+                        </button>
+                      </div>
+                      <div class="circle-post-card__cheer-overlay" aria-hidden="true" data-circle-cheer-overlay>
+                        <span class="circle-post-card__cheer-symbol">👍</span>
+                        <span class="circle-post-card__cheer-burst circle-post-card__cheer-burst--a">👍</span>
+                        <span class="circle-post-card__cheer-burst circle-post-card__cheer-burst--b">👍</span>
+                        <span class="circle-post-card__cheer-burst circle-post-card__cheer-burst--c">👍</span>
+                        <span class="circle-post-card__cheer-burst circle-post-card__cheer-burst--d">👍</span>
+                      </div>
+                    </article>
+
+                    <article class="circle-post-card">
+                      <div
+                        class="circle-post-card__trigger"
+                        role="button"
+                        tabindex="0"
+                        data-circle-post-trigger
+                        data-post-title="Audrey kim"
+                        data-post-caption="Fast little warrior run on the beach today."
+                        data-post-badge="Fast!"
+                        data-post-comments="Comment (1)"
+                        data-post-tag="Beach run"
+                        data-post-image="./assets/circle-post-user-2.png"
+                      >
+                        <div class="circle-post-card__header">
+                          <div class="circle-post-card__author">
+                            <img class="circle-post-card__avatar" src="./assets/circle-avatar-audrey.png" alt="" aria-hidden="true" />
+                            <div class="circle-post-card__author-copy">
+                              <strong>Audrey kim</strong>
+                              <span>Fast little warrior run on the beach today.</span>
+                            </div>
+                          </div>
+                          <span class="circle-post-card__menu" aria-hidden="true">···</span>
+                        </div>
+                        <div class="circle-post-card__media-wrap">
+                          <span class="circle-post-card__tag circle-post-card__tag--alt">Beach run</span>
+                          <img class="circle-post-card__media" src="./assets/circle-post-user-2.png" alt="Audrey beach post" />
+                        </div>
+                      </div>
+                      <div class="circle-post-card__actions">
+                        <button
+                          class="circle-post-card__action circle-post-card__action--primary"
+                          type="button"
+                          data-circle-cheer
+                          data-circle-cheer-symbol="👍"
+                        >
+                          🔥 Fast!
+                        </button>
+                        <button class="circle-post-card__action circle-post-card__action--secondary" type="button">
+                          💬 Comment (1)
+                        </button>
+                      </div>
+                      <div class="circle-post-card__cheer-overlay" aria-hidden="true" data-circle-cheer-overlay>
+                        <span class="circle-post-card__cheer-symbol">👍</span>
+                        <span class="circle-post-card__cheer-burst circle-post-card__cheer-burst--a">👍</span>
+                        <span class="circle-post-card__cheer-burst circle-post-card__cheer-burst--b">👍</span>
+                        <span class="circle-post-card__cheer-burst circle-post-card__cheer-burst--c">👍</span>
+                        <span class="circle-post-card__cheer-burst circle-post-card__cheer-burst--d">👍</span>
+                      </div>
+                    </article>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </section>
+
+          <div class="circle-detail" data-circle-detail aria-hidden="true">
+            <div class="circle-detail__backdrop" data-circle-detail-close></div>
+            <section class="circle-detail__panel" aria-label="Post detail">
+              <button class="circle-detail__close" type="button" data-circle-detail-close aria-label="Close post detail">×</button>
+              <div class="circle-detail__header">
+                <h2 class="circle-detail__title" data-circle-detail-title>Post</h2>
+                <p class="circle-detail__caption" data-circle-detail-caption></p>
+              </div>
+              <img class="circle-detail__image" data-circle-detail-image src="" alt="" />
+              <div class="circle-detail__meta">
+                <span class="circle-detail__chip" data-circle-detail-badge></span>
+                <span class="circle-detail__chip circle-detail__chip--secondary" data-circle-detail-comments></span>
+              </div>
+            </section>
+          </div>
+        </section>
+
+        <section
+          class="scene scene--training"
+          data-screen="training"
+          aria-label="Training screen"
+          data-training-scene
+        >
+          <img
+            class="training-scene__background"
+            src="./assets/training-background.png"
+            alt=""
+            aria-hidden="true"
+          />
+
+          <section class="training-scene__pose-card" aria-label="Training pose">
+            <h1 class="training-scene__pose-title">The Warrior Pose</h1>
+            <div class="training-scene__pose-divider" aria-hidden="true"></div>
+            <img
+              class="training-scene__pose-art"
+              src="./assets/training-pose.png"
+              alt="The Warrior Pose"
+            />
+          </section>
+
+          <div class="training-scene__timer" aria-live="polite" aria-atomic="true">
+            <img
+              class="training-scene__timer-shell"
+              src="./assets/training-timer-shell.png"
+              alt=""
+              aria-hidden="true"
+            />
+            <strong class="training-scene__timer-value" data-training-timer>00:40</strong>
+          </div>
+
+          <div class="training-scene__progress" aria-label="Training progress">
+            <div class="training-scene__progress-track">
+              <div
+                class="training-scene__progress-fill-complete"
+                data-training-progress-complete
+              ></div>
+              <div
+                class="training-scene__progress-fill-active"
+                data-training-progress-active
+              ></div>
+            </div>
+
+            <div
+              class="training-scene__progress-marker training-scene__progress-marker--current"
+              data-training-progress-marker-current
+            >
+              <img
+                class="training-scene__progress-marker-image"
+                src="./assets/training-paw-next.svg"
+                alt=""
+                aria-hidden="true"
+                data-training-progress-marker-current-image
+              />
+            </div>
+
+            <div
+              class="training-scene__progress-marker training-scene__progress-marker--next"
+              data-training-progress-marker-next
+            >
+              <img
+                class="training-scene__progress-marker-image"
+                src="./assets/training-paw-next.svg"
+                alt=""
+                aria-hidden="true"
+                data-training-progress-marker-next-image
+              />
+            </div>
+
+            <img
+              class="training-scene__progress-flag"
+              src="./assets/training-flag-top.png"
+              alt=""
+              aria-hidden="true"
+            />
+          </div>
+
+          <img
+            class="training-scene__monster training-scene__monster--purple"
+            src="./assets/training-monster-purple.png"
+            alt=""
+            aria-hidden="true"
+          />
+          <img
+            class="training-scene__monster training-scene__monster--green"
+            src="./assets/training-monster-green.png"
+            alt=""
+            aria-hidden="true"
+          />
+          <img
+            class="training-scene__monster training-scene__monster--orange"
+            src="./assets/training-monster-orange.png"
+            alt=""
+            aria-hidden="true"
+          />
+          <img
+            class="training-scene__monster training-scene__monster--blue"
+            src="./assets/training-monster-blue.png"
+            alt=""
+            aria-hidden="true"
+          />
+          <img
+            class="training-scene__monster training-scene__monster--red"
+            src="./assets/training-monster-red.png"
+            alt=""
+            aria-hidden="true"
+          />
+
+          <img
+            class="training-scene__bobo"
+            src="./assets/training-bobo-body.png"
+            alt=""
+            aria-hidden="true"
+          />
+
+          <section
+            class="training-scene__camera-layer"
+            aria-label="Warrior pose tracking"
+            data-training-camera-layer
+          >
+            <video
+              class="training-scene__pose-video"
+              playsinline
+              muted
+              data-training-pose-video
+            ></video>
+            <canvas
+              class="training-scene__pose-canvas"
+              width="640"
+              height="440"
+              aria-hidden="true"
+              data-training-pose-canvas
+            ></canvas>
+            <p class="training-scene__camera-status" data-training-camera-status>
+              Waiting for camera permission...
+            </p>
+            <div class="training-scene__pass-meter" data-training-pass-meter>
+              Hold steady 0.0 / 5.0s
+            </div>
+            <button
+              class="training-scene__camera-action"
+              type="button"
+              data-training-camera-action
+            >
+              Enable Camera
+            </button>
+          </section>
+
+          <div class="training-scene__hint" aria-live="polite" data-training-hint>
+            <div class="training-scene__hint-copy">
+              <p class="training-scene__hint-label">Coach Bobo</p>
+              <p class="training-scene__hint-text" data-training-feedback>
+                Let&apos;s get into warrior pose.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section class="scene scene--report" data-screen="report" aria-label="Activity report screen">
+          <img
+            class="report-scene__background"
+            src="./assets/report-background.png"
+            alt=""
+            aria-hidden="true"
+          />
+
+          <div
+            class="quest-side-tab__edge-sensor"
+            aria-hidden="true"
+            data-side-tab-edge
+            data-side-tab-screen="report"
+          ></div>
+
+          <nav
+            class="quest-side-tab"
+            aria-label="Report sections"
+            data-side-tab
+            data-side-tab-screen="report"
+          >
+            <div class="quest-side-tab__rail">
+              <div class="quest-side-tab__items">
+                <button
+                  class="quest-side-tab__item"
+                  type="button"
+                  aria-label="Home"
+                  data-nav-target="quest"
+                >
+                  <img
+                    class="quest-side-tab__icon quest-side-tab__icon--shirt"
+                    src="./assets/home-tab-icon-shirt.png"
+                    alt=""
+                    aria-hidden="true"
+                  />
+                </button>
+                <button class="quest-side-tab__item" type="button" aria-label="Buddy">
+                  <img
+                    class="quest-side-tab__icon quest-side-tab__icon--bobo"
+                    src="./assets/home-tab-icon-bobo.png"
+                    alt=""
+                    aria-hidden="true"
+                  />
+                </button>
+                <button
+                  class="quest-side-tab__item"
+                  type="button"
+                  aria-label="Community"
+                  data-nav-target="circle"
+                >
+                  <img
+                    class="quest-side-tab__icon quest-side-tab__icon--community"
+                    src="./assets/home-tab-icon-community.png"
+                    alt=""
+                    aria-hidden="true"
+                  />
+                </button>
+                <button
+                  class="quest-side-tab__item quest-side-tab__item--active"
+                  type="button"
+                  aria-label="Paw rewards"
+                  aria-current="page"
+                >
+                  <img
+                    class="quest-side-tab__icon quest-side-tab__icon--paw"
+                    src="./assets/home-tab-icon-paw.png"
+                    alt=""
+                    aria-hidden="true"
+                  />
+                </button>
+              </div>
+              <span class="quest-side-tab__indicator quest-side-tab__indicator--lower" aria-hidden="true"></span>
+            </div>
+          </nav>
+
+          <div class="report-scene__title" aria-hidden="true">
+            <img
+              class="report-scene__title-icon"
+              src="./assets/report-title-icon.svg"
+              alt=""
+              aria-hidden="true"
+            />
+            <span>Activity Report</span>
+          </div>
+
+          <button class="report-scene__sync-button" type="button" data-report-sync>
+            <img
+              class="report-scene__sync-icon"
+              src="./assets/report-sync-icon.svg"
+              alt=""
+              aria-hidden="true"
+            />
+            <span data-report-sync-label>Sync to Doctor</span>
+          </button>
+
+          <div class="report-scene__sync-toast" role="status" aria-live="polite" data-report-sync-toast>
+            Synced to doctor successfully!
+          </div>
+
+          <img
+            class="report-scene__left-panel"
+            src="./assets/report-left-panel.png"
+            alt="Growth summary and tips"
+          />
+
+          <img
+            class="report-scene__main-panel"
+            src="./assets/report-main-panel.png"
+            alt="Training metrics and weekly trends"
+          />
+        </section>
+
+        <section
+          class="scene scene--rewarding"
+          data-screen="rewarding"
+          aria-label="Rewarding screen"
+        >
+          <img
+            class="rewarding-scene__background"
+            src="./assets/rewarding-background-blur.png"
+            alt=""
+            aria-hidden="true"
+          />
+
+          <img
+            class="rewarding-scene__banner"
+            src="./assets/rewarding-banner.png"
+            alt="You win"
+            aria-hidden="true"
+          />
+
+          <img
+            class="rewarding-scene__card"
+            src="./assets/rewarding-card-frame.png"
+            alt=""
+            aria-hidden="true"
+          />
+
+          <img
+            class="rewarding-scene__rewards"
+            src="./assets/rewarding-rewards-strip.png"
+            alt="Rewards: ten bones, two paws, one mystery box"
+          />
+
+          <div class="rewarding-scene__actions">
+            <button
+              class="rewarding-scene__accept"
+              type="button"
+              data-nav-target="quest"
+            >
+              ACCEPT
+            </button>
+          </div>
+
+          <div class="rewarding-scene__bobo-wrap" aria-hidden="true">
+            <div class="rewarding-scene__confetti" data-rewarding-confetti>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+            <img
+              class="rewarding-scene__bobo"
+              src="./assets/rewarding-bobo-party.png"
+              alt=""
+            />
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/pose/pose.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>
