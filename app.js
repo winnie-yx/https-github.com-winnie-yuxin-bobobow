@@ -43,20 +43,48 @@ const questCard = document.querySelector(".quest-card");
 const questIntensityButtons = document.querySelectorAll("[data-quest-intensity]");
 const questCharacter = document.querySelector("[data-quest-character]");
 const questBubble = document.querySelector("[data-quest-bubble]");
+const clothesScene = document.querySelector("[data-clothes-scene]");
+const clothesAvatar = document.querySelector("[data-clothes-avatar]");
+const clothesTabButtons = Array.from(document.querySelectorAll("[data-clothes-tab]"));
+const clothesPanels = Array.from(document.querySelectorAll("[data-clothes-panel]"));
+const clothesItemButtons = Array.from(document.querySelectorAll("[data-clothes-item]"));
+const clothesAvatarBody = document.querySelector(".clothes-avatar__body");
+const clothesPreviewHeadwear = document.querySelector("[data-clothes-preview-headwear]");
+const clothesPreviewOutfit = document.querySelector("[data-clothes-preview-outfit]");
+const movementOptionButtons = Array.from(
+  document.querySelectorAll("[data-movement-option]")
+);
 const sideTabNodes = Array.from(document.querySelectorAll("[data-side-tab]"));
 const sideTabEdges = Array.from(document.querySelectorAll("[data-side-tab-edge]"));
 const circlePostTriggers = Array.from(
   document.querySelectorAll("[data-circle-post-trigger]")
 );
+const circleChatTriggers = Array.from(
+  document.querySelectorAll("[data-circle-chat-trigger]")
+);
 const circleCheerButtons = Array.from(document.querySelectorAll("[data-circle-cheer]"));
-const circleDetail = document.querySelector("[data-circle-detail]");
-const circleDetailTitle = document.querySelector("[data-circle-detail-title]");
-const circleDetailCaption = document.querySelector("[data-circle-detail-caption]");
-const circleDetailImage = document.querySelector("[data-circle-detail-image]");
-const circleDetailBadge = document.querySelector("[data-circle-detail-badge]");
-const circleDetailComments = document.querySelector("[data-circle-detail-comments]");
-const circleDetailCloseButtons = Array.from(
-  document.querySelectorAll("[data-circle-detail-close]")
+const circlePostBackButtons = Array.from(
+  document.querySelectorAll("[data-circle-post-back]")
+);
+const circleChatBackButtons = Array.from(
+  document.querySelectorAll("[data-circle-chat-back]")
+);
+const circlePostDetailTitle = document.querySelector("[data-circle-post-detail-title]");
+const circlePostDetailCaption = document.querySelector(
+  "[data-circle-post-detail-caption]"
+);
+const circlePostDetailAvatar = document.querySelector(
+  "[data-circle-post-detail-avatar]"
+);
+const circlePostDetailImage = document.querySelector(
+  "[data-circle-post-detail-image]"
+);
+const circlePostDropzone = document.querySelector("[data-circle-post-dropzone]");
+const circlePostStickersLayer = document.querySelector(
+  "[data-circle-post-stickers-layer]"
+);
+const circlePostStickerButtons = Array.from(
+  document.querySelectorAll("[data-circle-sticker]")
 );
 const circleCheerTimers = new WeakMap();
 const trainingScene = document.querySelector("[data-training-scene]");
@@ -197,6 +225,16 @@ let selectedGender = null;
 let currentAge = Number(ageCurrent?.textContent || 8);
 let currentPet = Number(petCard?.dataset.petIndex || 0);
 let currentQuestIntensity = questCard?.dataset.intensity || "standard";
+let currentClothesTab = clothesScene?.dataset.mode || "clothes";
+let currentMovement = clothesAvatar?.dataset.movement || "idle";
+let currentCircleSticker =
+  circlePostStickerButtons.find((button) => button.classList.contains("is-active")) ||
+  null;
+let circleStickerDrag = null;
+const clothesSelection = {
+  headwear: null,
+  outfit: null,
+};
 const sideTabStates = new Map(
   sideTabNodes.map((node) => [
     node.dataset.sideTabScreen || "",
@@ -270,9 +308,6 @@ function setScreen(screen, options = {}) {
       node.classList.toggle("is-active", isTarget);
       node.classList.remove("is-entering", "is-leaving");
     });
-    if (screen !== "circle") {
-      closeCircleDetail();
-    }
     syncSceneRuntime(screen);
     if (screen === "rewarding") {
       triggerRewardingConfettiBurst();
@@ -291,10 +326,6 @@ function setScreen(screen, options = {}) {
     });
   });
 
-  if (screen !== "circle") {
-    closeCircleDetail();
-  }
-
   syncSceneRuntime(screen);
   if (screen === "rewarding") {
     window.setTimeout(triggerRewardingConfettiBurst, 180);
@@ -308,6 +339,33 @@ function setScreen(screen, options = {}) {
 
 function getActiveScreen() {
   return document.querySelector(".scene.is-active")?.dataset.screen || null;
+}
+
+function getInitialScreen() {
+  const params = new URLSearchParams(window.location.search);
+  const requestedScreen = params.get("screen");
+  const versionHint = params.get("v") || "";
+  const availableScreens = new Set(
+    Array.from(screenNodes).map((node) => node.dataset.screen)
+  );
+
+  if (availableScreens.has(requestedScreen)) {
+    return requestedScreen;
+  }
+
+  if (versionHint.startsWith("circle-post")) {
+    return "circle-post";
+  }
+
+  if (versionHint.startsWith("circle-chat")) {
+    return "circle-chat";
+  }
+
+  if (versionHint.startsWith("clothes")) {
+    return "clothes";
+  }
+
+  return "login";
 }
 
 function setRegisterMode(mode) {
@@ -377,6 +435,111 @@ function triggerQuestCharacterAnimation() {
   }, 2200);
 }
 
+function setClothesTab(mode) {
+  if (!clothesScene) {
+    return;
+  }
+
+  currentClothesTab = mode;
+  clothesScene.dataset.mode = mode;
+
+  clothesTabButtons.forEach((button) => {
+    const isActive = button.dataset.clothesTab === mode;
+    button.classList.toggle("is-active", isActive);
+    button.setAttribute("aria-selected", String(isActive));
+    button.tabIndex = isActive ? 0 : -1;
+  });
+
+  clothesPanels.forEach((panel) => {
+    const isActive = panel.dataset.clothesPanel === mode;
+    panel.classList.toggle("is-active", isActive);
+    panel.hidden = !isActive;
+  });
+}
+
+function renderClothesSelection() {
+  const selectedHeadwear = clothesSelection.headwear;
+  const selectedOutfit = clothesSelection.outfit;
+  const hasHeadwear = Boolean(selectedHeadwear);
+  const hasOutfit = Boolean(selectedOutfit);
+  const selectedHeadwearButton = clothesItemButtons.find(
+    (button) => button.dataset.clothesId === selectedHeadwear
+  );
+  const selectedOutfitButton = clothesItemButtons.find(
+    (button) => button.dataset.clothesId === selectedOutfit
+  );
+  const selectedHeadwearBodySrc = selectedHeadwearButton?.dataset.bodySrc || "";
+
+  clothesItemButtons.forEach((button) => {
+    const slot = button.dataset.clothesSlot;
+    const id = button.dataset.clothesId;
+    const isSelected = clothesSelection[slot] === id;
+    button.classList.toggle("is-selected", isSelected);
+    button.setAttribute("aria-pressed", String(isSelected));
+  });
+
+  if (clothesAvatar) {
+    clothesAvatar.dataset.headwearSelected = String(hasHeadwear);
+    clothesAvatar.dataset.outfitSelected = String(hasOutfit);
+  }
+
+  if (clothesAvatarBody) {
+    const defaultBodySrc =
+      clothesAvatarBody.dataset.clothesBodyDefaultSrc || "./assets/clothes-ip-base.png";
+    clothesAvatarBody.src = selectedHeadwearBodySrc || defaultBodySrc;
+  }
+
+  if (clothesPreviewHeadwear) {
+    if (selectedHeadwear && !selectedHeadwearBodySrc) {
+      clothesPreviewHeadwear.src = selectedHeadwearButton?.dataset.previewSrc || "";
+      clothesPreviewHeadwear.alt = selectedHeadwearButton?.dataset.itemName || "Selected headwear";
+      clothesPreviewHeadwear.parentElement?.classList.add("is-visible");
+    } else {
+      clothesPreviewHeadwear.src = "";
+      clothesPreviewHeadwear.alt = "";
+      clothesPreviewHeadwear.parentElement?.classList.remove("is-visible");
+    }
+  }
+
+  if (clothesPreviewOutfit) {
+    if (selectedOutfit) {
+      clothesPreviewOutfit.src = selectedOutfitButton?.dataset.previewSrc || "";
+      clothesPreviewOutfit.alt = selectedOutfitButton?.dataset.itemName || "Selected outfit";
+      clothesPreviewOutfit.parentElement?.classList.add("is-visible");
+    } else {
+      clothesPreviewOutfit.src = "";
+      clothesPreviewOutfit.alt = "";
+      clothesPreviewOutfit.parentElement?.classList.remove("is-visible");
+    }
+  }
+}
+
+function setClothesItem(button) {
+  const slot = button?.dataset.clothesSlot;
+  const id = button?.dataset.clothesId;
+
+  if (!slot || !id) {
+    return;
+  }
+
+  clothesSelection[slot] = id;
+  renderClothesSelection();
+}
+
+function setMovement(value) {
+  currentMovement = value;
+
+  if (clothesAvatar) {
+    clothesAvatar.dataset.movement = value;
+  }
+
+  movementOptionButtons.forEach((button) => {
+    const isActive = button.dataset.movementOption === value;
+    button.classList.toggle("is-active", isActive);
+    button.setAttribute("aria-checked", String(isActive));
+  });
+}
+
 function clampQuestSideTabReveal(value) {
   return Math.max(0, Math.min(QUEST_SIDE_TAB_WIDTH, value));
 }
@@ -434,44 +597,156 @@ function closeAllSideTabs() {
 }
 
 function closeCircleDetail() {
-  if (!circleDetail) {
+  if (getActiveScreen() !== "circle-post") {
     return;
   }
 
-  circleDetail.classList.remove("is-visible");
-  circleDetail.setAttribute("aria-hidden", "true");
+  setScreen("circle");
+}
+
+function openCircleChat() {
+  setScreen("circle-chat");
+}
+
+function closeCircleChat() {
+  if (getActiveScreen() !== "circle-chat") {
+    return;
+  }
+
+  setScreen("circle");
 }
 
 function openCircleDetail(button) {
-  if (!circleDetail || !button) {
+  if (!button) {
     return;
   }
 
-  if (circleDetailTitle) {
-    circleDetailTitle.textContent = button.dataset.postTitle || "Post";
+  if (circlePostDetailTitle) {
+    circlePostDetailTitle.textContent = button.dataset.postTitle || "Post";
   }
 
-  if (circleDetailCaption) {
-    circleDetailCaption.textContent = button.dataset.postCaption || "";
+  if (circlePostDetailCaption) {
+    circlePostDetailCaption.textContent = button.dataset.postCaption || "";
   }
 
-  if (circleDetailImage) {
-    circleDetailImage.src = button.dataset.postImage || "";
-    circleDetailImage.alt = button.dataset.postTitle
+  if (circlePostDetailAvatar) {
+    circlePostDetailAvatar.src =
+      button.dataset.postDetailAvatar || "./assets/circle-detail-leo-avatar.png";
+  }
+
+  if (circlePostDetailImage) {
+    circlePostDetailImage.src =
+      button.dataset.postDetailImage ||
+      button.dataset.postImage ||
+      "./assets/circle-detail-leo-post.png";
+    circlePostDetailImage.alt = button.dataset.postTitle
       ? `${button.dataset.postTitle} post detail`
       : "Post detail";
   }
 
-  if (circleDetailBadge) {
-    circleDetailBadge.textContent = button.dataset.postBadge || "";
+  setScreen("circle-post");
+}
+
+function setCircleSticker(button) {
+  if (!button) {
+    return;
   }
 
-  if (circleDetailComments) {
-    circleDetailComments.textContent = button.dataset.postComments || "";
+  currentCircleSticker = button;
+
+  circlePostStickerButtons.forEach((stickerButton) => {
+    const isActive = stickerButton === button;
+    stickerButton.classList.toggle("is-active", isActive);
+    stickerButton.setAttribute("aria-pressed", String(isActive));
+  });
+
+}
+
+function createCircleStickerDragGhost(button) {
+  const sourceImage = button.querySelector("img");
+  const ghost = document.createElement("img");
+
+  ghost.className = "circle-post-sticker-drag-ghost";
+  ghost.src = button.dataset.stickerSrc || sourceImage?.src || "";
+  ghost.alt = "";
+  ghost.setAttribute("aria-hidden", "true");
+  document.body.appendChild(ghost);
+
+  return ghost;
+}
+
+function moveCircleStickerDragGhost(x, y) {
+  if (!circleStickerDrag?.ghost) {
+    return;
   }
 
-  circleDetail.classList.add("is-visible");
-  circleDetail.setAttribute("aria-hidden", "false");
+  circleStickerDrag.ghost.style.left = `${x}px`;
+  circleStickerDrag.ghost.style.top = `${y}px`;
+}
+
+function placeCircleSticker(button, clientX, clientY) {
+  if (!circlePostDropzone || !circlePostStickersLayer || !button) {
+    return;
+  }
+
+  const rect = circlePostDropzone.getBoundingClientRect();
+
+  if (
+    clientX < rect.left ||
+    clientX > rect.right ||
+    clientY < rect.top ||
+    clientY > rect.bottom
+  ) {
+    return;
+  }
+
+  const placedSticker = document.createElement("img");
+  const xPercent = ((clientX - rect.left) / rect.width) * 100;
+  const yPercent = ((clientY - rect.top) / rect.height) * 100;
+
+  placedSticker.className = "circle-post-detail-card__placed-sticker";
+  placedSticker.src = button.dataset.stickerSrc || "";
+  placedSticker.alt = button.dataset.stickerName || "Sticker";
+  placedSticker.style.left = `${xPercent}%`;
+  placedSticker.style.top = `${yPercent}%`;
+  circlePostStickersLayer.appendChild(placedSticker);
+}
+
+function startCircleStickerDrag(button, event) {
+  if (!button || event.button !== 0) {
+    return;
+  }
+
+  setCircleSticker(button);
+  button.setPointerCapture?.(event.pointerId);
+  circleStickerDrag = {
+    button,
+    ghost: createCircleStickerDragGhost(button),
+    pointerId: event.pointerId,
+  };
+  moveCircleStickerDragGhost(event.clientX, event.clientY);
+  document.body.classList.add("is-dragging-circle-sticker");
+  event.preventDefault();
+}
+
+function updateCircleStickerDrag(button, event) {
+  if (!circleStickerDrag || circleStickerDrag.pointerId !== event.pointerId) {
+    return;
+  }
+
+  moveCircleStickerDragGhost(event.clientX, event.clientY);
+}
+
+function endCircleStickerDrag(button, event) {
+  if (!circleStickerDrag || circleStickerDrag.pointerId !== event.pointerId) {
+    return;
+  }
+
+  placeCircleSticker(circleStickerDrag.button, event.clientX, event.clientY);
+  circleStickerDrag.ghost?.remove();
+  button.releasePointerCapture?.(event.pointerId);
+  circleStickerDrag = null;
+  document.body.classList.remove("is-dragging-circle-sticker");
 }
 
 function triggerCircleCheer(button) {
@@ -1470,6 +1745,24 @@ sideTabButtons.forEach((button) => {
   });
 });
 
+clothesTabButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    setClothesTab(button.dataset.clothesTab || "clothes");
+  });
+});
+
+clothesItemButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    setClothesItem(button);
+  });
+});
+
+movementOptionButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    setMovement(button.dataset.movementOption || "idle");
+  });
+});
+
 circlePostTriggers.forEach((button) => {
   button.addEventListener("click", () => {
     openCircleDetail(button);
@@ -1483,9 +1776,53 @@ circlePostTriggers.forEach((button) => {
   });
 });
 
-circleDetailCloseButtons.forEach((button) => {
+circlePostBackButtons.forEach((button) => {
   button.addEventListener("click", () => {
     closeCircleDetail();
+  });
+});
+
+circleChatTriggers.forEach((button) => {
+  button.addEventListener("click", (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+    openCircleChat();
+  });
+
+  button.addEventListener("keydown", (event) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      event.stopPropagation();
+      openCircleChat();
+    }
+  });
+});
+
+circleChatBackButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    closeCircleChat();
+  });
+});
+
+circlePostStickerButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    setCircleSticker(button);
+  });
+
+  button.addEventListener("pointerdown", (event) => {
+    startCircleStickerDrag(button, event);
+  });
+
+  button.addEventListener("pointermove", (event) => {
+    updateCircleStickerDrag(button, event);
+  });
+
+  button.addEventListener("pointerup", (event) => {
+    endCircleStickerDrag(button, event);
+  });
+
+  button.addEventListener("pointercancel", (event) => {
+    endCircleStickerDrag(button, event);
   });
 });
 
@@ -1495,6 +1832,10 @@ circleCheerButtons.forEach((button) => {
     triggerCircleCheer(button);
   });
 });
+
+if (currentCircleSticker) {
+  setCircleSticker(currentCircleSticker);
+}
 
 navButtons.forEach((button) => {
   button.addEventListener("click", () => {
@@ -1522,6 +1863,11 @@ navButtons.forEach((button) => {
 
     if (target === "quest") {
       setScreen("quest");
+      return;
+    }
+
+    if (target === "clothes") {
+      setScreen("clothes");
       return;
     }
 
@@ -1576,6 +1922,10 @@ passwordToggles.forEach((toggle) => {
     toggle.setAttribute("aria-label", isHidden ? "Hide password" : "Show password");
   });
 });
+
+setClothesTab(currentClothesTab);
+renderClothesSelection();
+setMovement(currentMovement);
 
 function updateAgeDisplay(age) {
   currentAge = age;
@@ -2031,4 +2381,4 @@ setQuestIntensity(currentQuestIntensity);
 resetProfileState();
 setPetIndex(currentPet);
 updateAgeDisplay(currentAge);
-setScreen("login", { immediate: true });
+setScreen(getInitialScreen(), { immediate: true });

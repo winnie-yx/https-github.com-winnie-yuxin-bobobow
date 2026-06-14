@@ -14,7 +14,7 @@
       href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@500;600;700&family=Inter:wght@500;600&family=Plus+Jakarta+Sans:wght@700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./styles.css?v=clothes-grid-3" />
   </head>
   <body>
     <main class="viewport">
@@ -608,7 +608,12 @@
                     aria-hidden="true"
                   />
                 </button>
-                <button class="quest-side-tab__item" type="button" aria-label="Buddy">
+                <button
+                  class="quest-side-tab__item"
+                  type="button"
+                  aria-label="Buddy"
+                  data-nav-target="clothes"
+                >
                   <img
                     class="quest-side-tab__icon quest-side-tab__icon--bobo"
                     src="./assets/home-tab-icon-bobo.png"
@@ -770,6 +775,250 @@
           </section>
         </section>
 
+        <section
+          class="scene scene--clothes clothes-scene"
+          data-screen="clothes"
+          data-clothes-scene
+          data-mode="clothes"
+          aria-label="Clothes screen"
+        >
+          <img
+            class="clothes-scene__background"
+            src="./assets/clothes-background.png"
+            alt=""
+            aria-hidden="true"
+          />
+
+          <div class="clothes-avatar" data-clothes-avatar data-movement="idle">
+            <div class="clothes-avatar__shadow" aria-hidden="true">
+              <img src="./assets/clothes-dog-shadow.png" alt="" />
+            </div>
+            <div class="clothes-avatar__body-wrap">
+              <div class="clothes-avatar__preview clothes-avatar__preview--outfit" aria-hidden="true">
+                <img src="" alt="" data-clothes-preview-outfit />
+              </div>
+              <img
+                class="clothes-avatar__body"
+                src="./assets/clothes-ip-base.png"
+                data-clothes-body-default-src="./assets/clothes-ip-base.png"
+                alt="Bobo preview"
+              />
+              <div class="clothes-avatar__preview clothes-avatar__preview--headwear" aria-hidden="true">
+                <img src="" alt="" data-clothes-preview-headwear />
+              </div>
+            </div>
+            <div class="clothes-avatar__stump" aria-hidden="true">
+              <img src="./assets/clothes-stump.png" alt="" />
+            </div>
+          </div>
+
+          <section class="clothes-panel" aria-label="Clothes customization panel">
+            <div class="clothes-panel__inner">
+              <div class="clothes-tabs" role="tablist" aria-label="Customize sections">
+                <button
+                  class="clothes-tabs__button is-active"
+                  type="button"
+                  role="tab"
+                  aria-selected="true"
+                  data-clothes-tab="clothes"
+                >
+                  Clothes
+                </button>
+                <button
+                  class="clothes-tabs__button"
+                  type="button"
+                  role="tab"
+                  aria-selected="false"
+                  data-clothes-tab="movements"
+                >
+                  Movements
+                </button>
+              </div>
+
+              <div class="clothes-panel__content is-active" data-clothes-panel="clothes">
+                <div class="clothes-grid">
+                  <img
+                    class="clothes-grid__reference"
+                    src="./assets/clothes-grid-reference.png"
+                    alt=""
+                    aria-hidden="true"
+                  />
+                  <button
+                    class="clothes-item"
+                    type="button"
+                    aria-label="Bear hat"
+                    data-clothes-item
+                    data-clothes-id="bear-hat"
+                    data-clothes-slot="headwear"
+                    data-preview-src="./assets/clothes-hat-bear.png"
+                    data-item-name="Bear hat"
+                  ></button>
+
+                  <button
+                    class="clothes-item"
+                    type="button"
+                    aria-label="Blue cap"
+                    data-clothes-item
+                    data-clothes-id="blue-cap"
+                    data-clothes-slot="headwear"
+                    data-body-src="./assets/clothes-ip-blue-cap.png"
+                    data-preview-src="./assets/clothes-hat-cap.png"
+                    data-item-name="Blue cap"
+                  ></button>
+
+                  <button
+                    class="clothes-item"
+                    type="button"
+                    aria-label="Green sleep hat"
+                    data-clothes-item
+                    data-clothes-id="green-sleep-hat"
+                    data-clothes-slot="headwear"
+                    data-preview-src="./assets/clothes-hat-green-beanie.png"
+                    data-item-name="Green sleep hat"
+                  ></button>
+
+                  <button
+                    class="clothes-item"
+                    type="button"
+                    aria-label="Headphones"
+                    data-clothes-item
+                    data-clothes-id="headphones"
+                    data-clothes-slot="headwear"
+                    data-preview-src="./assets/clothes-headphones2.png"
+                    data-item-name="Headphones"
+                  ></button>
+
+                  <button
+                    class="clothes-item"
+                    type="button"
+                    aria-label="Blue dress"
+                    data-clothes-item
+                    data-clothes-id="blue-dress"
+                    data-clothes-slot="outfit"
+                    data-preview-src="./assets/clothes-dress-blue2.png"
+                    data-item-name="Blue dress"
+                  ></button>
+
+                  <button
+                    class="clothes-item"
+                    type="button"
+                    aria-label="Green shorts"
+                    data-clothes-item
+                    data-clothes-id="green-shorts"
+                    data-clothes-slot="outfit"
+                    data-preview-src="./assets/clothes-shorts-green2.png"
+                    data-item-name="Green shorts"
+                  ></button>
+
+                  <button
+                    class="clothes-item"
+                    type="button"
+                    aria-label="Blue pants"
+                    data-clothes-item
+                    data-clothes-id="blue-pants"
+                    data-clothes-slot="outfit"
+                    data-preview-src="./assets/clothes-pants-blue2.png"
+                    data-item-name="Blue pants"
+                  ></button>
+
+                  <button
+                    class="clothes-item"
+                    type="button"
+                    aria-label="Orange shorts"
+                    data-clothes-item
+                    data-clothes-id="orange-shorts"
+                    data-clothes-slot="outfit"
+                    data-preview-src="./assets/clothes-shorts-orange.png"
+                    data-item-name="Orange shorts"
+                  ></button>
+                </div>
+              </div>
+
+              <div class="clothes-panel__content" data-clothes-panel="movements" hidden>
+                <div class="movement-grid" role="radiogroup" aria-label="Buddy movements">
+                  <button
+                    class="movement-card is-active"
+                    type="button"
+                    role="radio"
+                    aria-checked="true"
+                    data-movement-option="idle"
+                  >
+                    <span class="sr-only">Idle</span>
+                    <img src="./assets/movement-card-idle.png" alt="" aria-hidden="true" />
+                  </button>
+                  <button
+                    class="movement-card"
+                    type="button"
+                    role="radio"
+                    aria-checked="false"
+                    data-movement-option="rest"
+                  >
+                    <span class="sr-only">Rest</span>
+                    <img src="./assets/movement-card-rest.png" alt="" aria-hidden="true" />
+                  </button>
+                  <button
+                    class="movement-card"
+                    type="button"
+                    role="radio"
+                    aria-checked="false"
+                    data-movement-option="stretch"
+                  >
+                    <span class="sr-only">Stretch</span>
+                    <img src="./assets/movement-card-stretch.png" alt="" aria-hidden="true" />
+                  </button>
+                  <button
+                    class="movement-card"
+                    type="button"
+                    role="radio"
+                    aria-checked="false"
+                    data-movement-option="walk"
+                  >
+                    <span class="sr-only">Walk</span>
+                    <img src="./assets/movement-card-walk.png" alt="" aria-hidden="true" />
+                  </button>
+                  <button
+                    class="movement-card"
+                    type="button"
+                    role="radio"
+                    aria-checked="false"
+                    data-movement-option="eat"
+                  >
+                    <span class="sr-only">Eat</span>
+                    <img src="./assets/movement-card-eat.png" alt="" aria-hidden="true" />
+                  </button>
+                  <button
+                    class="movement-card"
+                    type="button"
+                    role="radio"
+                    aria-checked="false"
+                    data-movement-option="pray"
+                  >
+                    <span class="sr-only">Pray</span>
+                    <img src="./assets/movement-card-pray.png" alt="" aria-hidden="true" />
+                  </button>
+                </div>
+              </div>
+
+              <div class="clothes-panel__actions">
+                <button
+                  class="clothes-action clothes-action--secondary"
+                  type="button"
+                  data-nav-target="quest"
+                >
+                  Back
+                </button>
+                <button
+                  class="clothes-action clothes-action--primary"
+                  type="button"
+                  data-nav-target="quest"
+                >
+                  Done
+                </button>
+              </div>
+            </div>
+          </section>
+        </section>
+
         <section class="scene scene--circle" data-screen="circle" aria-label="Circle social screen">
           <img
             class="circle-scene__background"
@@ -806,7 +1055,12 @@
                     aria-hidden="true"
                   />
                 </button>
-                <button class="quest-side-tab__item" type="button" aria-label="Buddy">
+                <button
+                  class="quest-side-tab__item"
+                  type="button"
+                  aria-label="Buddy"
+                  data-nav-target="clothes"
+                >
                   <img
                     class="quest-side-tab__icon quest-side-tab__icon--bobo"
                     src="./assets/home-tab-icon-bobo.png"
@@ -892,9 +1146,17 @@
                         data-post-badge="Great Job!"
                         data-post-comments="Comment (5)"
                         data-post-image="./assets/circle-post-user-1.png"
+                        data-post-detail-avatar="./assets/circle-detail-leo-avatar.png"
+                        data-post-detail-image="./assets/circle-detail-leo-post.png"
                       >
                         <div class="circle-post-card__header">
-                          <div class="circle-post-card__author">
+                          <div
+                            class="circle-post-card__author"
+                            role="button"
+                            tabindex="0"
+                            data-circle-chat-trigger
+                            aria-label="Open chat with Leo"
+                          >
                             <img class="circle-post-card__avatar" src="./assets/circle-avatar-leo.png" alt="" aria-hidden="true" />
                             <div class="circle-post-card__author-copy">
                               <strong>Leo</strong>
@@ -1082,21 +1344,288 @@
             </div>
           </section>
 
-          <div class="circle-detail" data-circle-detail aria-hidden="true">
-            <div class="circle-detail__backdrop" data-circle-detail-close></div>
-            <section class="circle-detail__panel" aria-label="Post detail">
-              <button class="circle-detail__close" type="button" data-circle-detail-close aria-label="Close post detail">×</button>
-              <div class="circle-detail__header">
-                <h2 class="circle-detail__title" data-circle-detail-title>Post</h2>
-                <p class="circle-detail__caption" data-circle-detail-caption></p>
+        </section>
+
+        <section class="scene scene--circle-post" data-screen="circle-post" aria-label="Circle post detail screen">
+          <img
+            class="circle-scene__background"
+            src="./assets/circle-background.png"
+            alt=""
+            aria-hidden="true"
+          />
+
+          <section class="circle-post-scene__shell" aria-label="Post detail">
+            <div class="circle-post-scene__topbar">
+              <button
+                class="circle-post-scene__back"
+                type="button"
+                aria-label="Back to circle feed"
+                data-circle-post-back
+              >
+                <img src="./assets/circle-detail-back-icon.svg" alt="" aria-hidden="true" />
+              </button>
+
+              <div class="circle-post-scene__toolbar">
+                <label class="circle-post-scene__search">
+                  <img src="./assets/circle-search-icon.svg" alt="" aria-hidden="true" />
+                  <input type="text" value="" placeholder="Search friend ID" aria-label="Search friend ID" />
+                </label>
+                <button class="circle-post-scene__icon-button circle-post-scene__icon-button--add" type="button" aria-label="Add friend">
+                  <img
+                    class="circle-post-scene__add-icon"
+                    src="./assets/circle-add-friend-button-139-261.png"
+                    alt=""
+                    aria-hidden="true"
+                  />
+                </button>
+                <button class="circle-post-scene__icon-button" type="button" aria-label="Notifications">
+                  <span aria-hidden="true">⎋</span>
+                </button>
               </div>
-              <img class="circle-detail__image" data-circle-detail-image src="" alt="" />
-              <div class="circle-detail__meta">
-                <span class="circle-detail__chip" data-circle-detail-badge></span>
-                <span class="circle-detail__chip circle-detail__chip--secondary" data-circle-detail-comments></span>
+            </div>
+
+            <div class="circle-post-scene__content">
+              <article class="circle-post-detail-card" aria-live="polite">
+                <header class="circle-post-detail-card__header">
+                  <div class="circle-post-detail-card__author">
+                    <div class="circle-post-detail-card__avatar-wrap">
+                      <img
+                        class="circle-post-detail-card__avatar"
+                        src="./assets/circle-detail-leo-avatar.png"
+                        alt=""
+                        aria-hidden="true"
+                        data-circle-post-detail-avatar
+                      />
+                    </div>
+                    <div class="circle-post-detail-card__author-copy">
+                      <h2 data-circle-post-detail-title>Leo</h2>
+                      <p data-circle-post-detail-caption>Just finished a great stretch!</p>
+                    </div>
+                  </div>
+
+                  <button class="circle-post-detail-card__menu" type="button" aria-label="More post actions">
+                    <span aria-hidden="true">···</span>
+                  </button>
+                </header>
+
+                <div class="circle-post-detail-card__media-shell" data-circle-post-dropzone>
+                  <img
+                    class="circle-post-detail-card__media"
+                    src="./assets/circle-detail-leo-post.png"
+                    alt="Leo post detail"
+                    data-circle-post-detail-image
+                  />
+                  <div class="circle-post-detail-card__placed-stickers" data-circle-post-stickers-layer></div>
+                </div>
+              </article>
+
+              <aside class="circle-post-detail-side">
+                <section class="circle-post-stickers" aria-label="Quick stickers">
+                  <div class="circle-post-stickers__grid" role="list">
+                    <button
+                    class="circle-post-sticker"
+                    type="button"
+                    aria-pressed="false"
+                    data-circle-sticker
+                      data-sticker-name="Good vibes"
+                      data-sticker-src="./assets/circle-sticker-good-vibes.svg"
+                    >
+                      <img src="./assets/circle-sticker-good-vibes.svg" alt="Good vibes sticker" />
+                    </button>
+                    <button
+                    class="circle-post-sticker is-active"
+                    type="button"
+                    aria-pressed="true"
+                    data-circle-sticker
+                      data-sticker-name="Flawless"
+                      data-sticker-src="./assets/circle-sticker-flawless.svg"
+                    >
+                      <img src="./assets/circle-sticker-flawless.svg" alt="Flawless sticker" />
+                    </button>
+                    <button
+                    class="circle-post-sticker"
+                    type="button"
+                    aria-pressed="false"
+                    data-circle-sticker
+                      data-sticker-name="Very good"
+                      data-sticker-src="./assets/circle-sticker-very-good.svg"
+                    >
+                      <img src="./assets/circle-sticker-very-good.svg" alt="Very good sticker" />
+                    </button>
+                    <button
+                    class="circle-post-sticker"
+                    type="button"
+                    aria-pressed="false"
+                    data-circle-sticker
+                      data-sticker-name="Vibing"
+                      data-sticker-src="./assets/circle-sticker-vibing.svg"
+                    >
+                      <img src="./assets/circle-sticker-vibing.svg" alt="Vibing sticker" />
+                    </button>
+                    <button
+                    class="circle-post-sticker"
+                    type="button"
+                    aria-pressed="false"
+                    data-circle-sticker
+                      data-sticker-name="Too easy"
+                      data-sticker-src="./assets/circle-sticker-too-easy.svg"
+                    >
+                      <img src="./assets/circle-sticker-too-easy.svg" alt="Too easy sticker" />
+                    </button>
+                    <button
+                    class="circle-post-sticker"
+                    type="button"
+                    aria-pressed="false"
+                    data-circle-sticker
+                      data-sticker-name="All the"
+                      data-sticker-src="./assets/circle-sticker-all-the.svg"
+                    >
+                      <img src="./assets/circle-sticker-all-the.svg" alt="All the sticker" />
+                    </button>
+                  </div>
+
+                  <div class="circle-post-stickers__pagination" aria-hidden="true">
+                    <span class="circle-post-stickers__dot"></span>
+                    <span class="circle-post-stickers__dot is-active"></span>
+                    <span class="circle-post-stickers__dot"></span>
+                  </div>
+                </section>
+
+                <section class="circle-post-streak-card" aria-label="Friend streak">
+                  <img
+                    class="circle-post-streak-card__overlay"
+                    src="./assets/circle-streak-card-overlay.svg"
+                    alt=""
+                    aria-hidden="true"
+                  />
+                  <div class="circle-post-streak-card__content">
+                    <h3>Your Friend Streak</h3>
+                    <div class="circle-post-streak-card__pill">
+                      <img src="./assets/circle-streak-icon.svg" alt="" aria-hidden="true" />
+                      <span>5 Days</span>
+                    </div>
+                  </div>
+                </section>
+              </aside>
+            </div>
+          </section>
+        </section>
+
+        <section class="scene scene--circle-chat" data-screen="circle-chat" aria-label="Chat with Leo screen">
+          <img
+            class="circle-scene__background"
+            src="./assets/circle-background.png"
+            alt=""
+            aria-hidden="true"
+          />
+
+          <section class="circle-chat-scene__shell" aria-label="Chat and challenge">
+            <div class="circle-post-scene__topbar">
+              <button
+                class="circle-post-scene__back"
+                type="button"
+                aria-label="Back to circle feed"
+                data-circle-chat-back
+              >
+                <img src="./assets/circle-detail-back-icon.svg" alt="" aria-hidden="true" />
+              </button>
+
+              <div class="circle-post-scene__toolbar">
+                <label class="circle-post-scene__search">
+                  <img src="./assets/circle-search-icon.svg" alt="" aria-hidden="true" />
+                  <input type="text" value="" placeholder="Search friend ID" aria-label="Search friend ID" />
+                </label>
+                <button class="circle-post-scene__icon-button circle-post-scene__icon-button--add" type="button" aria-label="Add friend">
+                  <img
+                    class="circle-post-scene__add-icon"
+                    src="./assets/circle-add-friend-button-139-261.png"
+                    alt=""
+                    aria-hidden="true"
+                  />
+                </button>
+                <button class="circle-post-scene__icon-button" type="button" aria-label="Notifications">
+                  <span aria-hidden="true">⎋</span>
+                </button>
               </div>
-            </section>
-          </div>
+            </div>
+
+            <div class="circle-chat-scene__content">
+              <section class="circle-chat-card" aria-label="Leo chat">
+                <header class="circle-chat-card__header">
+                  <img src="./assets/circle-avatar-leo.png" alt="" aria-hidden="true" />
+                  <h2>Leo</h2>
+                </header>
+
+                <div class="circle-chat-card__thread">
+                  <div class="circle-chat-card__row circle-chat-card__row--incoming">
+                    <img class="circle-chat-card__avatar" src="./assets/circle-avatar-leo.png" alt="" aria-hidden="true" />
+                    <p class="circle-chat-card__bubble circle-chat-card__bubble--incoming">
+                      Are you ready for the rescue mission? 🌲
+                    </p>
+                  </div>
+
+                  <div class="circle-chat-card__row circle-chat-card__row--outgoing">
+                    <p class="circle-chat-card__bubble circle-chat-card__bubble--outgoing">
+                      Yes! I'm stretching now! 🧘
+                    </p>
+                  </div>
+
+                  <div class="circle-chat-card__row circle-chat-card__row--image">
+                    <img class="circle-chat-card__avatar" src="./assets/circle-avatar-leo.png" alt="" aria-hidden="true" />
+                    <img class="circle-chat-card__photo" src="./assets/circle-post-user-2.png" alt="Bobo beach yoga message" />
+                  </div>
+                </div>
+
+                <div class="circle-chat-card__quick-actions" aria-label="Quick reactions">
+                  <button type="button" aria-label="Smile reaction">☻</button>
+                  <button type="button" aria-label="Paw reaction">🐾</button>
+                  <button type="button" aria-label="Yoga reaction">🧘</button>
+                  <button type="button" aria-label="Heart reaction">♥</button>
+                </div>
+              </section>
+
+              <section class="circle-chat-mission" aria-label="Forest rescue mission">
+                <h2>Forest Rescue<br />Mission</h2>
+
+                <div class="circle-chat-mission__progress">
+                  <div class="circle-chat-mission__bar"></div>
+                  <img
+                    class="circle-chat-mission__bobo"
+                    src="./assets/circle-chat-mission-bobo.png"
+                    alt=""
+                    aria-hidden="true"
+                  />
+                </div>
+
+                <div class="circle-chat-mission__players">
+                  <article class="circle-chat-mission__player is-done">
+                    <div class="circle-chat-mission__player-avatar">
+                      <img src="./assets/circle-avatar-leo.png" alt="" aria-hidden="true" />
+                      <span aria-hidden="true">✓</span>
+                    </div>
+                    <strong>Done!</strong>
+                  </article>
+                  <article class="circle-chat-mission__player is-waiting">
+                    <div class="circle-chat-mission__player-avatar">
+                      <span aria-hidden="true">♧</span>
+                    </div>
+                    <strong>Waiting...</strong>
+                  </article>
+                  <article class="circle-chat-mission__player is-waiting">
+                    <div class="circle-chat-mission__player-avatar">
+                      <span aria-hidden="true">♧</span>
+                    </div>
+                    <strong>Waiting...</strong>
+                  </article>
+                </div>
+
+                <button class="circle-chat-mission__start" type="button" data-nav-target="training">
+                  <span>Start My Challenge</span>
+                  <img src="./assets/start-icon.svg" alt="" aria-hidden="true" />
+                </button>
+              </section>
+            </div>
+          </section>
         </section>
 
         <section
@@ -1295,7 +1824,12 @@
                     aria-hidden="true"
                   />
                 </button>
-                <button class="quest-side-tab__item" type="button" aria-label="Buddy">
+                <button
+                  class="quest-side-tab__item"
+                  type="button"
+                  aria-label="Buddy"
+                  data-nav-target="clothes"
+                >
                   <img
                     class="quest-side-tab__icon quest-side-tab__icon--bobo"
                     src="./assets/home-tab-icon-bobo.png"
@@ -1441,6 +1975,6 @@
     <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@mediapipe/pose/pose.js"></script>
-    <script src="./app.js"></script>
+    <script src="./app.js?v=clothes-grid-3"></script>
   </body>
 </html>
